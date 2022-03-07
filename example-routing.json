@@ -1,0 +1,1381 @@
+{
+    "status": 200,
+    "data": {
+        "code": "Ok",
+        "routes": [
+            {
+                "legs": [
+                    {
+                        "steps": [
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 0,
+                                        "entry": [
+                                            true
+                                        ],
+                                        "bearings": [
+                                            234
+                                        ],
+                                        "location": [
+                                            105.781266,
+                                            20.989341
+                                        ]
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "knb_C}ksdSj@`AR\\Vb@h@~@hDhFRZT\\JN",
+                                "mode": "driving",
+                                "duration": 20.1,
+                                "maneuver": {
+                                    "bearing_after": 234,
+                                    "location": [
+                                        105.781266,
+                                        20.989341
+                                    ],
+                                    "bearing_before": 0,
+                                    "type": "depart"
+                                },
+                                "weight": 20.1,
+                                "distance": 327.4,
+                                "name": "Phố Tố Hữu"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.778746,
+                                            20.987573
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.778587,
+                                            20.987461
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.778667,
+                                            20.987369
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            false
+                                        ],
+                                        "in": 3
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.778831,
+                                            20.987475
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.7808,
+                                            20.988857
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.781123,
+                                            20.989077
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.783135,
+                                            20.990483
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            120,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.785321,
+                                            20.99191
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.788655,
+                                            20.993686
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "icb_Ce|rdST^POU_@KQS[mByCiAoBk@{@OUk@_AwBoDg@w@kBwCKSS[cC}DkAoBMS_@_AKUgBeEGO}B{FuBiEYe@kDqFS[",
+                                "mode": "driving",
+                                "duration": 97.9,
+                                "maneuver": {
+                                    "bearing_after": 232,
+                                    "type": "continue",
+                                    "modifier": "uturn",
+                                    "bearing_before": 232,
+                                    "location": [
+                                        105.778746,
+                                        20.987573
+                                    ]
+                                },
+                                "weight": 97.9,
+                                "distance": 1490.7,
+                                "name": "Phố Tố Hữu"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.790203,
+                                            20.994781
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            120,
+                                            240,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.791966,
+                                            20.99375
+                                        ],
+                                        "bearings": [
+                                            30,
+                                            120,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.792819,
+                                            20.993262
+                                        ],
+                                        "bearings": [
+                                            30,
+                                            120,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.794413,
+                                            20.992366
+                                        ],
+                                        "bearings": [
+                                            15,
+                                            120,
+                                            240,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 3
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.794822,
+                                            20.992117
+                                        ],
+                                        "bearings": [
+                                            120,
+                                            210,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "kpc_CwcudSVg@t@wA`AuB|@kBf@cAx@eBP_@v@cBfByDp@qAt@wAL]Jc@",
+                                "mode": "driving",
+                                "duration": 66.9,
+                                "maneuver": {
+                                    "bearing_after": 122,
+                                    "type": "turn",
+                                    "modifier": "right",
+                                    "bearing_before": 52,
+                                    "location": [
+                                        105.790203,
+                                        20.994781
+                                    ]
+                                },
+                                "weight": 66.9,
+                                "distance": 655,
+                                "name": "Đường Lương Thế Vinh"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.795585,
+                                            20.991719
+                                        ],
+                                        "bearings": [
+                                            15,
+                                            150,
+                                            285
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.796037,
+                                            20.99294
+                                        ],
+                                        "bearings": [
+                                            15,
+                                            195,
+                                            285
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "g}b_CmevdS}Be@c@OqAc@w@W",
+                                "mode": "driving",
+                                "duration": 26.8,
+                                "maneuver": {
+                                    "bearing_after": 15,
+                                    "type": "turn",
+                                    "modifier": "left",
+                                    "bearing_before": 111,
+                                    "location": [
+                                        105.795585,
+                                        20.991719
+                                    ]
+                                },
+                                "weight": 26.8,
+                                "distance": 177.5,
+                                "name": "Phố Vũ Hữu"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.796158,
+                                            20.993221
+                                        ],
+                                        "bearings": [
+                                            15,
+                                            105,
+                                            195
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "sfc_C_ivdS^}Cf@kE",
+                                "mode": "driving",
+                                "duration": 35.1,
+                                "maneuver": {
+                                    "bearing_after": 101,
+                                    "type": "turn",
+                                    "modifier": "right",
+                                    "bearing_before": 21,
+                                    "location": [
+                                        105.796158,
+                                        20.993221
+                                    ]
+                                },
+                                "weight": 35.1,
+                                "distance": 192.7,
+                                "name": "Nguyễn Quý Đức"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797972,
+                                            20.992856
+                                        ],
+                                        "bearings": [
+                                            105,
+                                            285,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797912,
+                                            20.992941
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797768,
+                                            20.993143
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "kdc_CitvdSOJg@Z]RUXAZKP",
+                                "mode": "driving",
+                                "duration": 24.3,
+                                "maneuver": {
+                                    "bearing_after": 326,
+                                    "type": "turn",
+                                    "modifier": "sharp left",
+                                    "bearing_before": 101,
+                                    "location": [
+                                        105.797972,
+                                        20.992856
+                                    ]
+                                },
+                                "weight": 24.3,
+                                "distance": 101.2,
+                                "name": ""
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "in": 0,
+                                        "entry": [
+                                            true
+                                        ],
+                                        "bearings": [
+                                            125
+                                        ],
+                                        "location": [
+                                            105.797313,
+                                            20.993466
+                                        ]
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "ehc_CepvdS",
+                                "mode": "driving",
+                                "duration": 0,
+                                "maneuver": {
+                                    "bearing_after": 0,
+                                    "type": "arrive",
+                                    "modifier": "straight",
+                                    "bearing_before": 305,
+                                    "location": [
+                                        105.797313,
+                                        20.993466
+                                    ]
+                                },
+                                "weight": 0,
+                                "distance": 0,
+                                "name": ""
+                            }
+                        ],
+                        "distance": 2944.5,
+                        "duration": 271.1,
+                        "summary": "Phố Tố Hữu, Đường Lương Thế Vinh",
+                        "weight": 271.1
+                    }
+                ],
+                "distance": 2944.5,
+                "duration": 271.1,
+                "weight_name": "routability",
+                "weight": 271.1
+            },
+            {
+                "legs": [
+                    {
+                        "steps": [
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 0,
+                                        "entry": [
+                                            true
+                                        ],
+                                        "bearings": [
+                                            234
+                                        ],
+                                        "location": [
+                                            105.781266,
+                                            20.989341
+                                        ]
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "knb_C}ksdSj@`AR\\Vb@h@~@hDhFRZT\\JN",
+                                "mode": "driving",
+                                "duration": 20.1,
+                                "maneuver": {
+                                    "bearing_after": 234,
+                                    "location": [
+                                        105.781266,
+                                        20.989341
+                                    ],
+                                    "bearing_before": 0,
+                                    "type": "depart"
+                                },
+                                "weight": 20.1,
+                                "distance": 327.4,
+                                "name": "Phố Tố Hữu"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.778746,
+                                            20.987573
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.778587,
+                                            20.987461
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.778667,
+                                            20.987369
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            false
+                                        ],
+                                        "in": 3
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.778831,
+                                            20.987475
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.7808,
+                                            20.988857
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.781123,
+                                            20.989077
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.783135,
+                                            20.990483
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            120,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.785321,
+                                            20.99191
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.788655,
+                                            20.993686
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.790203,
+                                            20.994781
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            120,
+                                            240,
+                                            300
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.792615,
+                                            20.996385
+                                        ],
+                                        "bearings": [
+                                            45,
+                                            150,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.792682,
+                                            20.996433
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            225,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.794843,
+                                            20.997919
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.796052,
+                                            20.998754
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            210,
+                                            225,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 2
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "icb_Ce|rdST^POU_@KQS[mByCiAoBk@{@OUk@_AwBoDg@w@kBwCKSS[cC}DkAoBMS_@_AKUgBeEGO}B{FuBiEYe@kDqFS[[k@aFqIcAeBGKQYiAmB_A_BmCgEMSOW}@uAGKg@aAKQMOOWk@}@",
+                                "mode": "driving",
+                                "duration": 144.1,
+                                "maneuver": {
+                                    "bearing_after": 232,
+                                    "type": "continue",
+                                    "modifier": "uturn",
+                                    "bearing_before": 232,
+                                    "location": [
+                                        105.778746,
+                                        20.987573
+                                    ]
+                                },
+                                "weight": 144.1,
+                                "distance": 2297.4,
+                                "name": "Phố Tố Hữu"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.796483,
+                                            20.999048
+                                        ],
+                                        "bearings": [
+                                            45,
+                                            90,
+                                            240
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.797063,
+                                            20.998957
+                                        ],
+                                        "bearings": [
+                                            135,
+                                            300,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            false
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.797569,
+                                            20.998366
+                                        ],
+                                        "bearings": [
+                                            135,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.797689,
+                                            20.99823
+                                        ],
+                                        "bearings": [
+                                            90,
+                                            150,
+                                            315
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.798021,
+                                            20.997809
+                                        ],
+                                        "bearings": [
+                                            150,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.799205,
+                                            20.99633
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 0,
+                                        "location": [
+                                            105.799583,
+                                            20.995842
+                                        ],
+                                        "bearings": [
+                                            150,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "akd_C_kvdSAYBc@F_@FUtBeBZWrAaAnDmCvAeA^Yj@_@t@i@z@m@lD_C^Y~@q@",
+                                "mode": "driving",
+                                "duration": 45.9,
+                                "maneuver": {
+                                    "bearing_after": 85,
+                                    "type": "turn",
+                                    "modifier": "right",
+                                    "bearing_before": 53,
+                                    "location": [
+                                        105.796483,
+                                        20.999048
+                                    ]
+                                },
+                                "weight": 45.9,
+                                "distance": 720.8,
+                                "name": "Đường Khuất Duy Tiến"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.800825,
+                                            20.994188
+                                        ],
+                                        "bearings": [
+                                            150,
+                                            240,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            true,
+                                            false
+                                        ],
+                                        "in": 2
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.800515,
+                                            20.993974
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.799858,
+                                            20.993509
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            135,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.799585,
+                                            20.993316
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            240,
+                                            315
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.799371,
+                                            20.993165
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.79925,
+                                            20.99308
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            180,
+                                            240
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "ulc_CefwdSj@|@v@pAb@p@d@t@\\j@PV|AL",
+                                "mode": "driving",
+                                "duration": 39,
+                                "maneuver": {
+                                    "bearing_after": 233,
+                                    "type": "turn",
+                                    "modifier": "right",
+                                    "bearing_before": 143,
+                                    "location": [
+                                        105.800825,
+                                        20.994188
+                                    ]
+                                },
+                                "weight": 39,
+                                "distance": 258,
+                                "name": "Ngõ 5 Đường Khuất Duy Tiến"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 3,
+                                        "location": [
+                                            105.799184,
+                                            20.992606
+                                        ],
+                                        "bearings": [
+                                            0,
+                                            135,
+                                            210,
+                                            270
+                                        ],
+                                        "entry": [
+                                            false,
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.799097,
+                                            20.992602
+                                        ],
+                                        "bearings": [
+                                            90,
+                                            135,
+                                            285
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 1,
+                                        "location": [
+                                            105.798447,
+                                            20.992761
+                                        ],
+                                        "bearings": [
+                                            105,
+                                            285,
+                                            345
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "ybc_C{{vdS@NUnAIp@K|@G`@",
+                                "mode": "driving",
+                                "duration": 18.7,
+                                "maneuver": {
+                                    "bearing_after": 265,
+                                    "type": "continue",
+                                    "modifier": "right",
+                                    "bearing_before": 187,
+                                    "location": [
+                                        105.799184,
+                                        20.992606
+                                    ]
+                                },
+                                "weight": 18.7,
+                                "distance": 129.3,
+                                "name": "Nguyễn Quý Đức"
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797972,
+                                            20.992856
+                                        ],
+                                        "bearings": [
+                                            105,
+                                            285,
+                                            330
+                                        ],
+                                        "entry": [
+                                            false,
+                                            true,
+                                            true
+                                        ],
+                                        "in": 0
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797912,
+                                            20.992941
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    },
+                                    {
+                                        "out": 2,
+                                        "location": [
+                                            105.797768,
+                                            20.993143
+                                        ],
+                                        "bearings": [
+                                            60,
+                                            150,
+                                            330
+                                        ],
+                                        "entry": [
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "in": 1
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "kdc_CitvdSOJg@Z]RUXAZKP",
+                                "mode": "driving",
+                                "duration": 24.3,
+                                "maneuver": {
+                                    "bearing_after": 326,
+                                    "type": "turn",
+                                    "modifier": "right",
+                                    "bearing_before": 281,
+                                    "location": [
+                                        105.797972,
+                                        20.992856
+                                    ]
+                                },
+                                "weight": 24.3,
+                                "distance": 101.2,
+                                "name": ""
+                            },
+                            {
+                                "intersections": [
+                                    {
+                                        "in": 0,
+                                        "entry": [
+                                            true
+                                        ],
+                                        "bearings": [
+                                            125
+                                        ],
+                                        "location": [
+                                            105.797313,
+                                            20.993466
+                                        ]
+                                    }
+                                ],
+                                "driving_side": "right",
+                                "geometry": "ehc_CepvdS",
+                                "mode": "driving",
+                                "duration": 0,
+                                "maneuver": {
+                                    "bearing_after": 0,
+                                    "type": "arrive",
+                                    "modifier": "straight",
+                                    "bearing_before": 305,
+                                    "location": [
+                                        105.797313,
+                                        20.993466
+                                    ]
+                                },
+                                "weight": 0,
+                                "distance": 0,
+                                "name": ""
+                            }
+                        ],
+                        "distance": 3834.1,
+                        "duration": 292.1,
+                        "summary": "Phố Tố Hữu, Đường Khuất Duy Tiến",
+                        "weight": 292.1
+                    }
+                ],
+                "distance": 3834.1,
+                "duration": 292.1,
+                "weight_name": "routability",
+                "weight": 292.1
+            }
+        ],
+        "waypoints": [
+            {
+                "hint": "zBMAgP___38xAAAASQAAADcAAACxAAAAr5ezQj6VKELjjshCX4COQzEAAABJAAAANwAAALEAAAAIAgAAEhhOBp1FQAEMGE4GpUVAAQIArw6Q-JiC",
+                "distance": 1.083394,
+                "name": "Phố Tố Hữu",
+                "location": [
+                    105.781266,
+                    20.989341
+                ]
+            },
+            {
+                "hint": "MoBLgDmAS4AAAAAAGgAAAAAAAAB9AAAAAAAAADW8K0EAAAAAP2hQQgAAAAAaAAAAAAAAAH0AAAAIAgAAwVZOBrpVQAE9Vk4GKVZAAQAAzweQ-JiC",
+                "distance": 18.42383,
+                "name": "",
+                "location": [
+                    105.797313,
+                    20.993466
+                ]
+            }
+        ]
+    },
+    "message": "Success"
+}

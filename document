@@ -1,0 +1,14 @@
+Model:
+    lon, lat, name, direct, minSpeed, maxSpeed, status
+
+B1: Hiển thị map lên trên dashboard
+B2: Lấy thông tin các điểm trong bán kính 10km để hiển thị lên trên bản đồ
+B3: Nếu click vào điểm đã được gán nhãn => load điểm và thực hiện edit.
+B4: Nếu click vào điểm mới => tạo ra điểm gán nhãn mới.
+
+Mapping routing:
+    B1: App truyền kinh độ vs vĩ độ của điểm đi và điểm đến.
+    B2: Speed-tool gọi sang routing lấy output
+    B3: Nhận response vs tập hợp kinh độ và vĩ độ.
+    B4: query to animation lấy thông tin địa chỉ
+    B5: lấy được id và mapping với output routing

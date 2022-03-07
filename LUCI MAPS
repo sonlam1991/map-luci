@@ -1,0 +1,26 @@
+LUCI MAPS
+
+1. Các tính năng
+- Tạo 1 bản đồ hiển thị với base map là OSM
+- Tạo 1 menu cho việc setup cơ bản việc hiển thị ở level nào.
+- Tạo 4 layers: show camera, show cây xanh, show tủ điện, show đèn chiếu sáng
+- Layer 1: Show camera:
+    -> CURD show các camera theo toạ độ 
+    -> tính năng click vào sẽ link đến 1 địa chỉ để xem camera
+    -> zoom mới hiển thị
+- Layer 2: show cây xanh
+    -> CURD các cây xanh theo toạ độ
+    -> zoom thì mới hiển thị
+- Layer 3: show tủ điện 
+    -> CURD tủ điện theo toạ độ
+    -> zoom thì mới nhìn thấy
+    -> khi click vào icon tủ điện sẽ link đến thư mục chứa các file: thiết kế, auto card, lịch sử bảo trì.
+- Layer 4: show đèn chiếu sáng:
+    -> CURD đèn chiếu sáng
+    -> khi click vào sẽ hiển thị popup điều khiển on/off => hiển thị trạng thái tương ứng.
+    -> khi click sẽ gọi đến 1 api của phía lumi staging để gửi bản tin điều khiển.
+    -> zoom thì mới hiển thị.
+
+2. Timeline
+- Tạo 1 base project cho dự án demo - xây dựng bằng node js + view sẽ là  ejs - 4h
+- tạo 1 bản đồ hiện thị với 

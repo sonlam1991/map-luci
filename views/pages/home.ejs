@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-12 col-sm-3 col-md-3 content-input">
+        <input type="hidden" class="form-control" id="_id">
+        <input type="hidden" class="form-control" id="id">
+
+        <div class="form-group">
+            <label for="lon">Kinh Độ:</label>
+            <input type="text" class="form-control" id="lon">
+        </div>
+        <div class="form-group">
+            <label for="lat">Vĩ Độ:</label>
+            <input type="text" class="form-control" id="lat">
+        </div>
+        <div class="form-group">
+            <label for="address">Địa Chỉ:</label>
+            <input type="text" class="form-control" id="address">
+        </div>
+        <div class="form-group">
+            <label for="name">Tên Đường:</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group checkbox-inline form-checkbox-speed">
+            <label class="label-checkbox-speed">Tốc độ thay đổi:</label>
+            <input id="changeSpeed" class="checkbox-speed" type="checkbox" value="">
+        </div>
+        <div class="form-group chon-goc">
+            <label for="address">Góc Lệch:</label>
+            <input type="text" class="form-control" id="gocToaDo">
+        </div>
+
+        <div class="form-group chon-goc">
+            <button id="btn_start" class="btn btn-primary" onclick="selectToaDo(1)">Start</button>
+            <button id="btn_end" class="btn btn-info ml-2" onclick="selectToaDo(2)">End</button>
+        </div>
+
+
+        <div class="form-group">
+            <label for="minSpeed">Min Speed:</label>
+            <select class="form-control" id="minSpeed">
+                <option selected value="0">Chooose ...</option>
+                <option value="20">20Km/h</option>
+                <option value="30">30 Km/h</option>
+                <option value="40">40 Km/h</option>
+                <option value="50">50 Km/h</option>
+                <option value="60">60 Km/h</option>
+                <option value="70">70 Km/h</option>
+                <option value="80">80 Km/h</option>
+                <option value="90">90 Km/h</option>
+                <option value="100">100 Km/h</option>
+                <option value="110">110 Km/h</option>
+                <option value="120">120 Km/h</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="maxSpeed">Max Speed:</label>
+            <select class="form-control" id="maxSpeed">
+                <option value="20">20 Km/h</option>
+                <option value="30">30 Km/h</option>
+                <option value="40">40 Km/h</option>
+                <option value="50">50 Km/h</option>
+                <option value="60">60 Km/h</option>
+                <option value="70">70 Km/h</option>
+                <option selected value="80">80 Km/h</option>
+                <option value="90">90 Km/h</option>
+                <option value="100">100 Km/h</option>
+                <option value="110">110 Km/h</option>
+                <option value="120">120 Km/h</option>
+            </select>
+
+        </div>
+        <div class="form-group form-checkbox-speed">
+            <label class="label-checkbox-speed">Hiển thị tất cả:</label>
+            <input id="displayAll" class="checkbox-speed" type="checkbox" value="">
+        </div>
+
+        <button class="btn btn-primary" onclick="saveData()">Lưu</button>
+        <button id="btn_delete" class="btn btn-danger ml-2" onclick="deleteData()">Xóa</button>
+    </div>
+    <div class="col-12 col-sm-9 col-md-9 p-0 common-boder">
+        <div id="map_top_display"></div>
+    </div>
+</div>

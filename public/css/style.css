@@ -1,0 +1,28 @@
+#map_top_display {
+  height: 700px;
+}
+
+.content-input {
+  padding-left: 70px;
+  padding-right: 30px;
+  padding-top: 30px;
+}
+
+.leaflet-marker-icon:hover {
+  background-color: green !important;
+  z-index: 1000 !important;
+}
+
+.checkbox-speed {
+  margin-left: 20px !important;
+}
+
+.form-checkbox-speed {
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ml-2 {
+  margin-left: 20px !important;
+}
