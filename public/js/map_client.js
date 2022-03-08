@@ -21,11 +21,11 @@ var dataAddress = {};
 var currentZoomLevel = 15;
 
 /////////// ICON //////////////
-var cameraIcon = L.icon({ iconUrl: 'image/camera.png', iconSize: [25, 70], iconAnchor: [16, 37], popupAnchor: [0, -28] });
+var cameraIcon = L.icon({ iconUrl: 'image/camera.png', iconSize: [50, 30], iconAnchor: [16, 37], popupAnchor: [0, -28] });
 var trafficLightOnIcon = L.icon({ iconUrl: 'image/traffic-light-on.png', iconSize: [40, 50], iconAnchor: [16, 37], popupAnchor: [0, -28] });
 var trafficLightOffIcon = L.icon({ iconUrl: 'image/traffic-light-off.png', iconSize: [40, 50], iconAnchor: [16, 37], popupAnchor: [0, -28] });
 var treeIcon = L.icon({ iconUrl: 'image/tree.png', iconSize: [25, 50], iconAnchor: [16, 37], popupAnchor: [0, -28] });
-var electricalCabinetIcon = L.icon({ iconUrl: 'image/electrical-cabinet.png', iconSize: [25, 70], iconAnchor: [16, 37], popupAnchor: [0, -28] });
+var electricalCabinetIcon = L.icon({ iconUrl: 'image/electrical-cabinet.png', iconSize: [25, 50], iconAnchor: [16, 37], popupAnchor: [0, -28] });
 
 //////////////// function ///////////////
 
@@ -144,7 +144,10 @@ function onEachFeature(feature, layer) {
 async function addNewPoint(lon, lat) {
     $('#' + currentLayer + '_lon').val(lon.toFixed(6));
     $('#' + currentLayer + '_lat').val(lat.toFixed(6));
+    console.log('reset form');
+    resetForm(currentLayer);
     const mapData = getDataOne(lat, lon, currentLayer);
+    console.log(mapData);
     if (mapData) {
         const dataTemp = mapData.data ? mapData.data : {};
         switch (currentLayer) {
@@ -154,15 +157,15 @@ async function addNewPoint(lon, lat) {
                 $('#' + currentLayer + '_link_stream').val(dataTemp.link_stream);
                 break;
             case LAYER.TRAFFIC_LIGHT:
-                $('#' + currentLayer + '_id').text(dataTemp.id);
-                $('#' + currentLayer + '_name').text(dataTemp.name);
+                $('#' + currentLayer + '_id').val(dataTemp.id);
+                $('#' + currentLayer + '_name').val(dataTemp.name);
                 break;
             case LAYER.ELECTRICAL_CABINET:
-                $('#' + currentLayer + '_name').text(dataTemp.name);
-                $('#' + currentLayer + '_address').text(dataTemp.address);
+                $('#' + currentLayer + '_name').val(dataTemp.name);
+                $('#' + currentLayer + '_address').val(dataTemp.address);
                 break;
             case LAYER.TREE:
-                $('#' + currentLayer + '_name').text(dataTemp.name);
+                $('#' + currentLayer + '_name').val(dataTemp.name);
                 break;
             default:
                 break;
@@ -173,6 +176,28 @@ async function addNewPoint(lon, lat) {
     }
 }
 
+function resetForm(layer) {
+    switch (layer) {
+        case LAYER.CAMERA:
+            $('#' + layer + '_address').val('');
+            $('#' + layer + '_name').val('');
+            $('#' + layer + '_link_stream').val('');
+            break;
+        case LAYER.TRAFFIC_LIGHT:
+            $('#' + layer + '_id').val('');
+            $('#' + layer + '_name').val('');
+            break;
+        case LAYER.ELECTRICAL_CABINET:
+            $('#' + layer + '_name').val('');
+            $('#' + layer + '_address').val('');
+            break;
+        case LAYER.TREE:
+            $('#' + layer + '_name').val('');
+            break;
+        default:
+            break;
+    }
+}
 
 async function editData(lat, lon) {
     const dataMap = getDataOne(lat, lon, currentLayer);
@@ -267,9 +292,14 @@ function generatePointOnMap(dataMaps) {
         displayDataMaps.features.push(temp);
     });
 
+    if (pinLayer != undefined) {
+        map.removeLayer(pinLayer);
+    };
+    
     if (layerGeoJson) {
         clear_polyline(layerGeoJson);
     }
+
 
     layerGeoJson = L.geoJSON(displayDataMaps, {
         pointToLayer: function (feature, latlng) {
