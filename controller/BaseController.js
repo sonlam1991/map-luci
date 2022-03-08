@@ -11,7 +11,6 @@ module.exports = {
                 const skip = parseInt(page) * limit;
                 delete query['page'];
                 delete query['pageSize'];
-                query['maxSpeed'] = { $ne: 50 };
 
                 const data = await Model.find(query).skip(skip).limit(limit);
                 if (data && (data.length < 1)) {

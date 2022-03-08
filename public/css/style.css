@@ -1,9 +1,27 @@
+#layer_tree, #layer_camera, #layer_electrical_cabinet {
+  display: none;
+}
+
+#btn_traffic_light_delete, #btn_camera_delete, #btn_tree_delete, #btn_electrical_cabinet_delete {
+  display: none;
+}
+
+.main-layer {
+  margin-top: 30px;
+}
+
+.common-form {
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
 #map_top_display {
   height: 700px;
 }
 
+
 .content-input {
-  padding-left: 70px;
+  /* padding-left: 70px; */
   padding-right: 30px;
   padding-top: 30px;
 }

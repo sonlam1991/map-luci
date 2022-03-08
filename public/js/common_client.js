@@ -71,6 +71,7 @@ function getValueByIdSelector(id_selector) {
     return $('#' + id_selector).val().trim();
 }
 
+
 function getNameStreet(lat, lon) {
     return new Promise(resolve => {
         // 16.065774, 108.191459
