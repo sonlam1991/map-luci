@@ -37,6 +37,95 @@ function showLayer(layer) {
     $('#' + layer).show();
 }
 
+function resetForm(layer) {
+    switch (layer) {
+        case LAYER.CAMERA:
+            $('#' + layer + '_address').val('');
+            $('#' + layer + '_name').val('');
+            $('#' + layer + '_link_stream').val('');
+            break;
+        case LAYER.TRAFFIC_LIGHT:
+            $('#' + layer + '_id').val('');
+            $('#' + layer + '_name').val('');
+            break;
+        case LAYER.ELECTRICAL_CABINET:
+            $('#' + layer + '_name').val('');
+            $('#' + layer + '_address').val('');
+            break;
+        case LAYER.TREE:
+            $('#' + layer + '_name').val('');
+            break;
+        default:
+            break;
+    }
+}
+
+function getFeatureIcon(latlng, layer) {
+    switch (layer) {
+        case LAYER.CAMERA:
+            return L.marker(latlng, { icon: cameraIcon });
+        case LAYER.TRAFFIC_LIGHT:
+            return L.marker(latlng, { icon: trafficLightOnIcon });
+        case LAYER.ELECTRICAL_CABINET:
+            return L.marker(latlng, { icon: electricalCabinetIcon });
+        case LAYER.TREE:
+            return L.marker(latlng, { icon: treeIcon });
+        default:
+            return null;;
+    }
+}
+
+function addDataUpdate(layer, data) {
+    console.log(layer, ' ', data.id);
+    switch (layer) {
+        case LAYER.CAMERA:
+            $('#' + layer + '_address').val(data.address);
+            $('#' + layer + '_name').val(data.name);
+            $('#' + layer + '_link_stream').val(data.link_stream);
+            break;
+        case LAYER.TRAFFIC_LIGHT:
+            $('#' + layer + '_id').val(data.id);
+            $('#' + layer + '_name').val(data.name);
+            break;
+        case LAYER.ELECTRICAL_CABINET:
+            $('#' + layer + '_name').val(data.name);
+            $('#' + layer + '_address').val(data.address);
+            break;
+        case LAYER.TREE:
+            $('#' + layer + '_name').val(data.name);
+            break;
+        default:
+            return null;;
+    }
+}
+
+function getSaveData(layer) {
+    switch (layer) {
+        case LAYER.CAMERA:
+            return {
+                address: $('#' + layer + '_address').val(),
+                name: $('#' + layer + '_name').val(),
+                link_stream: $('#' + layer + '_link_stream').val(),
+            };
+        case LAYER.TRAFFIC_LIGHT:
+            return {
+                id: $('#' + layer + '_id').val(),
+                name: $('#' + layer + '_name').val(),
+            };
+        case LAYER.ELECTRICAL_CABINET:
+            return {
+                name: $('#' + layer + '_name').val(),
+                address: $('#' + layer + '_address').val(),
+            };
+        case LAYER.TREE:
+            return {
+                name: $('#' + layer + '_name').val(),
+            };
+        default:
+            return null;;
+    }
+}
+
 /////////////// END function //////////////////
 
 $(document).ready(function () {
@@ -92,7 +181,7 @@ $(document).ready(function () {
         map.flyTo(new L.LatLng(getValueByIdSelector(lat), getValueByIdSelector(lon)), 18);
         addPinPoint(getValueByIdSelector(lat), getValueByIdSelector(lon));
     });
-    $("#"+ currentLayer +"_lon").change(function () {
+    $("#" + currentLayer + "_lon").change(function () {
         typeChonGoc = 3;
         const lat = currentLayer + "_lat";
         const lon = currentLayer + "_lon";
@@ -131,7 +220,7 @@ function whenClicked(e) {
 }
 
 function onEachFeature(feature, layer) {
-    var popupContent = `<h3 class="text-center">${feature.name}</h3>`;
+    var popupContent = `<h3 class="text-center">${feature.featureName}</h3>`;
     if (feature.properties && feature.properties.popupContent) {
         popupContent += feature.properties.popupContent;
     }
@@ -176,32 +265,12 @@ async function addNewPoint(lon, lat) {
     }
 }
 
-function resetForm(layer) {
-    switch (layer) {
-        case LAYER.CAMERA:
-            $('#' + layer + '_address').val('');
-            $('#' + layer + '_name').val('');
-            $('#' + layer + '_link_stream').val('');
-            break;
-        case LAYER.TRAFFIC_LIGHT:
-            $('#' + layer + '_id').val('');
-            $('#' + layer + '_name').val('');
-            break;
-        case LAYER.ELECTRICAL_CABINET:
-            $('#' + layer + '_name').val('');
-            $('#' + layer + '_address').val('');
-            break;
-        case LAYER.TREE:
-            $('#' + layer + '_name').val('');
-            break;
-        default:
-            break;
-    }
-}
-
 async function editData(lat, lon) {
     const dataMap = getDataOne(lat, lon, currentLayer);
     console.log(dataMap);
+    if (pinLayer != undefined) {
+        map.removeLayer(pinLayer);
+    };
     if (dataMap) {
         $('#btn_' + currentLayer + '_delete').show();
         $('#_id').val(dataMap._id);
@@ -250,27 +319,45 @@ async function getData() {
 function generatePointOnMap(dataMaps) {
     dataMaps.forEach(item => {
         let popupContent = '';
+        let name = '';
+        const data = item.data;
         switch (currentLayer) {
             case LAYER.CAMERA:
-                // popupContent = `<p style="margin: 0;">
-                //                     Địa chỉ:<b> ${item.address}</b>
-                //                 </p> 
-                //                 <p style="margin: 0;">
-                //                     Max Speed: <b> ${item.maxSpeed}(km/h)</b>
-                //                 </p>
-                //                 <p style="margin: 0;"">
-                //                     Min Speed: <b> ${item.minSpeed}(km/h) </b>
-                //                 </p>`
-                popupContent = "camera";
+                name = "CAMERA";
+                popupContent = `<p style="margin: 0;">
+                                    Địa chỉ Lắp Đặt:<b> ${data.address}</b>
+                                </p> 
+                                <p style="margin: 0;">
+                                    Tên Camera: <b> ${data.name}</b>
+                                </p>
+                                <p style="margin: 0;"">
+                                    Link Stream: <b> ${data.link_stream}</b>
+                                </p>`
                 break;
             case LAYER.TRAFFIC_LIGHT:
-                popupContent = "traffic light";
+                name = "ĐÈN CHIẾU SÁNG";
+                popupContent = `<p style="margin: 0;">
+                                    ID Đèn Chiếu Sáng:<b> ${data.id}</b>
+                                </p> 
+                                <p style="margin: 0;">
+                                    Tên Đèn Chiếu Sáng: <b> ${data.name}</b>
+                                </p>`;
                 break;
             case LAYER.ELECTRICAL_CABINET:
-                popupContent = "eletrical cabinet";
+                name = "TỦ ĐIỆN";
+                popupContent =  `<p style="margin: 0;">
+                                    Tên Tủ Điện:<b> ${data.name}</b>
+                                </p> 
+                                <p style="margin: 0;">
+                                    Địa Chỉ Lắp: <b> ${data.address}</b>
+                                </p>`;
                 break;
             case LAYER.TREE:
-                popupContent = "tree";
+                name = "Cây";
+                popupContent = `<p style="margin: 0;">
+                                    Tên Cây:<b> ${data.name}</b>
+                                </p> 
+                            `;
                 break;
             default:
                 break;
@@ -284,6 +371,7 @@ function generatePointOnMap(dataMaps) {
             },
             "typeLayer": item.type,
             "data": item.data,
+            "featureName": name,
             "type": "Feature",
             "properties": {
                 "popupContent": popupContent
@@ -295,7 +383,7 @@ function generatePointOnMap(dataMaps) {
     if (pinLayer != undefined) {
         map.removeLayer(pinLayer);
     };
-    
+
     if (layerGeoJson) {
         clear_polyline(layerGeoJson);
     }
@@ -309,71 +397,7 @@ function generatePointOnMap(dataMaps) {
     }).addTo(map);
 }
 
-function addDataUpdate(layer, data) {
-    console.log(layer, ' ', data.id);
-    switch (layer) {
-        case LAYER.CAMERA:
-            $('#' + layer + '_address').val(data.address);
-            $('#' + layer + '_name').val(data.name);
-            $('#' + layer + '_link_stream').val(data.link_stream);
-            break;
-        case LAYER.TRAFFIC_LIGHT:
-            $('#' + layer + '_id').val(data.id);
-            $('#' + layer + '_name').val(data.name);
-            break;
-        case LAYER.ELECTRICAL_CABINET:
-            $('#' + layer + '_name').val(data.name);
-            $('#' + layer + '_address').val(data.address);
-            break;
-        case LAYER.TREE:
-            $('#' + layer + '_name').val(data.name);
-            break;
-        default:
-            return null;;
-    }
-}
 
-function getFeatureIcon(latlng, layer) {
-    switch (layer) {
-        case LAYER.CAMERA:
-            return L.marker(latlng, { icon: cameraIcon });
-        case LAYER.TRAFFIC_LIGHT:
-            return L.marker(latlng, { icon: trafficLightOnIcon });
-        case LAYER.ELECTRICAL_CABINET:
-            return L.marker(latlng, { icon: electricalCabinetIcon });
-        case LAYER.TREE:
-            return L.marker(latlng, { icon: treeIcon });
-        default:
-            return null;;
-    }
-}
-
-function getSaveData(layer) {
-    switch (layer) {
-        case LAYER.CAMERA:
-            return {
-                address: $('#' + layer + '_address').val(),
-                name: $('#' + layer + '_name').val(),
-                link_stream: $('#' + layer + '_link_stream').val(),
-            };
-        case LAYER.TRAFFIC_LIGHT:
-            return {
-                id: $('#' + layer + '_id').val(),
-                name: $('#' + layer + '_name').val(),
-            };
-        case LAYER.ELECTRICAL_CABINET:
-            return {
-                name: $('#' + layer + '_name').val(),
-                address: $('#' + layer + '_address').val(),
-            };
-        case LAYER.TREE:
-            return {
-                name: $('#' + layer + '_name').val(),
-            };
-        default:
-            return null;;
-    }
-}
 async function saveData(layer) {
     var data = {
         lon: getValueByIdSelector(currentLayer + '_lon'),
