@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Promise = require('promise');
-const Request =  require('./request');
+const Request = require('./request');
 const config = require('../config');
 
 module.exports.response = (res, data, status = 200, message = 'Success') => {
@@ -16,6 +16,39 @@ module.exports.response = (res, data, status = 200, message = 'Success') => {
 
 
 
+module.exports.getStatusDevice = async (devids) => {
+    const body = {
+        homeid: config.SMART_HOME_HOME_ID,
+        payload: {
+            cmd: 'get',
+            reqid: 'xxxxxxxxxxxxxx',
+            objects: [{
+                type: 'devices',
+                data: devids
+            }]
+        }
+    };
+    console.log(body);
+    console.log(body.payload.objects);
+    let options = Request.getOptionRequest('/device/get-status-devices', body);
+    let result = await Request.requestPromise(options);
+    if (!result.success) {
+        const loginOptions = Request.getOptionRequest('site/login', {
+            "email": "anhnt@lumi.biz",
+            "password": "lumivn274"
+        });
+        const resultLogin = await Request.requestPromise(loginOptions);
+        console.log({resultLogin});
+        if(resultLogin.success) {
+            config.SMART_HOME_TOKEN = resultLogin.data.access_token;
+            options = Request.getOptionRequest('/device/get-status-devices', body);
+            console.log(options);
+            result = await Request.requestPromise(options);
+        }
+    }
+    console.log(result);
+    return result;
+}
 
 module.exports.control = async (devid, value) => {
     const body = {
@@ -27,14 +60,28 @@ module.exports.control = async (devid, value) => {
                 type: 'devices',
                 data: [devid],
                 execution: {
-                    command: { on: value },
-                    params: 'OnOff'
+                    command: 'OnOff',
+                    params: { on: value }
                 }
             }]
         }
     };
-    const options = Request.getOptionRequest('/home-control/push-control-to-thing', body);
-    const result = await Request.requestPromise(options);
+    let options = Request.getOptionRequest('/home-control/push-control-to-thing', body);
+    let result = await Request.requestPromise(options);
+    if (!result.success) {
+        const loginOptions = Request.getOptionRequest('site/login', {
+            "email": "anhnt@lumi.biz",
+            "password": "lumivn274"
+        });
+        const resultLogin = await Request.requestPromise(loginOptions);
+        console.log({resultLogin});
+        if(resultLogin.success) {
+            config.SMART_HOME_TOKEN = resultLogin.data.access_token;
+            options = Request.getOptionRequest('/home-control/push-control-to-thing', body);
+            console.log(options);
+            result = await Request.requestPromise(options);
+        }
+    }
     console.log(result);
     return result;
 }
@@ -80,7 +127,7 @@ module.exports.mappingSpeedWithId = (dataAddresses, dataSpeeds) => {
     return new Promise(function (resolve, reject) {
         const response = [];
         for (const item of dataAddresses) {
-            const speedRaw =_getSpeedById(dataSpeeds, item.id);
+            const speedRaw = _getSpeedById(dataSpeeds, item.id);
             item['data'] = [];
             if (speedRaw && (speedRaw.length > 0)) {
                 for (const speed of speedRaw) {
@@ -182,9 +229,9 @@ module.exports.createIdAddress = (address) => {
         idAddress += _nonAccentVietnamese(address.state) + '_';
     }
 
-    if(address.city_district) {
+    if (address.city_district) {
         idAddress += _nonAccentVietnamese(address.city_district) + '_';
-    } else if(address.suburb) {
+    } else if (address.suburb) {
         idAddress += _nonAccentVietnamese(address.suburb) + '_';
     }
 
@@ -213,7 +260,7 @@ module.exports.createTinhThanhPho = (address) => {
 
 function _getSpeedByLonLat(speeds, lon, lat) {
     for (const speed of speeds) {
-        if(speed.lon == lon && speed.lat == lat) {
+        if (speed.lon == lon && speed.lat == lat) {
             return speed;
         }
     }
@@ -224,7 +271,7 @@ function _getSpeedByLonLat(speeds, lon, lat) {
 function _getSpeedById(speeds, id) {
     const response = [];
     for (const speed of speeds) {
-        if(speed.id == id) {
+        if (speed.id == id) {
             response.push(speed);
         }
     }

@@ -7,5 +7,6 @@ router.post('/map_add', MapController.addOrUpdate);
 router.post('/map_list', MapController.mapList);
 router.post('/map_delete', MapController.delete);
 router.post('/map_control', MapController.mapControl);
+router.post('/map_get_status', MapController.mapGetStatusDevice);
 
 module.exports = router;

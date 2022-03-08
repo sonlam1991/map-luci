@@ -18,12 +18,16 @@ module.exports.getOptionRequest = (url_api, data_request) => {
         json: true
     };
 
+    if (url_api == 'site/login') {
+        delete options.headers.Authorization;
+    }
+
     return options;
 }
 
 module.exports.requestPromise = (options) => {
-    return new Promise(function(resolve, reject) {
-        request(options, function(err, res, body) {
+    return new Promise(function (resolve, reject) {
+        request(options, function (err, res, body) {
             if (err) {
                 reject(err);
             }

@@ -28,6 +28,44 @@ var treeIcon = L.icon({ iconUrl: 'image/tree.png', iconSize: [25, 50], iconAncho
 var electricalCabinetIcon = L.icon({ iconUrl: 'image/electrical-cabinet.png', iconSize: [25, 50], iconAnchor: [16, 37], popupAnchor: [0, -28] });
 
 //////////////// function ///////////////
+var currentDeviceId;
+var currentStatus;
+var countGetStatus = 0;
+
+function convertIdDevice(deviceId) {
+    return deviceId.replace(/:/g, "_");
+}
+async function updateStatusDevice() {
+    countGetStatus++;
+    const data = {
+        deviceIds: [currentDeviceId]
+    };
+    const result = await requestPromisePOST('/map_get_status', data);
+    if(result.status == 200) {
+        const resultData = result.data;
+        if(resultData) {
+            const deviceId = resultData.deviceId;
+            const deviceIdConvert = convertIdDevice(deviceId);
+            const status = resultData.status;
+
+            if(status) {
+                $("#status_"+ deviceIdConvert).html(`<b id="status_${deviceIdConvert}" class="text-success">ON</b>`);            
+                $("#btn_"+ deviceIdConvert).html(`<button class="btn-secondany" 
+                                            onclick="controlTrafficLight('${deviceId}', false)" 
+                                            style="margin: 0;"> TURN OFF
+                                        </button>`);
+            } else {
+                $("#status_"+ deviceIdConvert).html(`<b id="status_${deviceIdConvert}" class="text-second">OFF</b>`);            
+                $("#btn_"+ deviceIdConvert).html(`<button class="btn-success" 
+                                            onclick="controlTrafficLight('${deviceId}', true)" 
+                                            style="margin: 0;"> TURN ON
+                                        </button>`);
+                console.log('status offf');
+            }
+        }
+        console.log({resultData});
+    }
+}
 
 function showLayer(layer) {
     $('#' + LAYER.CAMERA).hide();
@@ -60,12 +98,17 @@ function resetForm(layer) {
     }
 }
 
-function getFeatureIcon(latlng, layer) {
+function getFeatureIcon(latlng, layer, data) {
     switch (layer) {
         case LAYER.CAMERA:
             return L.marker(latlng, { icon: cameraIcon });
         case LAYER.TRAFFIC_LIGHT:
-            return L.marker(latlng, { icon: trafficLightOnIcon });
+            if(data.status) {
+                return L.marker(latlng, { icon: trafficLightOnIcon });
+            } else {
+                return L.marker(latlng, { icon: trafficLightOffIcon });
+            }
+            
         case LAYER.ELECTRICAL_CABINET:
             return L.marker(latlng, { icon: electricalCabinetIcon });
         case LAYER.TREE:
@@ -111,6 +154,7 @@ function getSaveData(layer) {
             return {
                 id: $('#' + layer + '_id').val(),
                 name: $('#' + layer + '_name').val(),
+                status: false,
             };
         case LAYER.ELECTRICAL_CABINET:
             return {
@@ -188,6 +232,12 @@ $(document).ready(function () {
         map.flyTo(new L.LatLng(getValueByIdSelector(lat), getValueByIdSelector(lon)), 18);
         addPinPoint(getValueByIdSelector(lat), getValueByIdSelector(lon));
     });
+
+    setInterval(function () {
+        if((currentLayer == LAYER.TRAFFIC_LIGHT) && (countGetStatus <= 3)) {
+            updateStatusDevice();
+        }
+    }, 1000);
 
 });
 
@@ -342,13 +392,31 @@ function generatePointOnMap(dataMaps) {
                                 <p style="margin: 0;">
                                     Tên Đèn Chiếu Sáng: <b> ${data.name}</b>
                                 </p>
-                                <p style="margin: 0;">
-                                    Status: <b> ${data.status}</b>
-                                </p>
-                                <button class="btn-primary" onclick="controlTrafficLight('${data.id}', 'on')"style="margin: 0;">
-                                    ON/OFF
-                                </button>
                                 `;
+                                if(data.status) {
+                                    popupContent += `
+                                        <p style="margin: 0;">
+                                            Trạng Thái Hiện Tại: <b id="status_${convertIdDevice(data.id)}" class="text-success">ON</b>
+                                        </p>
+                                        <div id="btn_${convertIdDevice(data.id)}">
+                                            <button  class="btn-secondary" 
+                                                onclick="controlTrafficLight('${data.id}', false)" style="margin: 0;">
+                                                TURN OFF
+                                            </button>
+                                        </div>`;
+                                    
+                                } else {
+                                    popupContent += `
+                                        <p style="margin: 0;">
+                                            Trạng Thái Hiện Tại: <b id="status_${convertIdDevice(data.id)}" class="text-second">OFF</b>
+                                        </p>
+                                        <div id="btn_${convertIdDevice(data.id)}">
+                                            <button class="btn-success" 
+                                                onclick="controlTrafficLight('${data.id}', true)" style="margin: 0;">
+                                                TURN ON
+                                            </button>
+                                        </div>`;
+                                }
                 break;
             case LAYER.ELECTRICAL_CABINET:
                 name = "TỦ ĐIỆN";
@@ -398,17 +466,19 @@ function generatePointOnMap(dataMaps) {
 
     layerGeoJson = L.geoJSON(displayDataMaps, {
         pointToLayer: function (feature, latlng) {
-            return getFeatureIcon(latlng, feature.typeLayer);
+            return getFeatureIcon(latlng, feature.typeLayer, feature.data);
         },
         onEachFeature: onEachFeature
     }).addTo(map);
 }
 
 async function controlTrafficLight(deviceId, value) {
+    countGetStatus = 0;
     const data = {
         deviceId,
         value,
     };
+    currentDeviceId = deviceId;
     console.log('control =>', data);
     const result = await requestPromisePOST('/map_control', data);
 }
