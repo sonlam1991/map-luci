@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const Promise = require('promise');
-const request = require('request');
+const Request =  require('./request');
+const config = require('../config');
 
 module.exports.response = (res, data, status = 200, message = 'Success') => {
     if (!data && (status == 200)) {
@@ -13,6 +14,30 @@ module.exports.response = (res, data, status = 200, message = 'Success') => {
     })
 }
 
+
+
+
+module.exports.control = async (devid, value) => {
+    const body = {
+        homeid: config.SMART_HOME_HOME_ID,
+        payload: {
+            cmd: 'set',
+            reqid: 'xxxxxxxxxxxxxx',
+            objects: [{
+                type: 'devices',
+                data: [devid],
+                execution: {
+                    command: { on: value },
+                    params: 'OnOff'
+                }
+            }]
+        }
+    };
+    const options = Request.getOptionRequest('/home-control/push-control-to-thing', body);
+    const result = await Request.requestPromise(options);
+    console.log(result);
+    return result;
+}
 
 module.exports.collectLongLang = (data) => {
     return new Promise(function (resolve, reject) {

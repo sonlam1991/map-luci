@@ -6,5 +6,6 @@ const MapController = require('../controller/MapController');
 router.post('/map_add', MapController.addOrUpdate);
 router.post('/map_list', MapController.mapList);
 router.post('/map_delete', MapController.delete);
+router.post('/map_control', MapController.mapControl);
 
 module.exports = router;

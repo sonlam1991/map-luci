@@ -60,6 +60,17 @@ module.exports = {
         }
     },
 
+    async mapControl(req, res, next) {
+        const body = req.body ? req.body : {};
+        console.log({body});
+        try {
+            const result = await Utils.control(body.deviceId, body.value);
+            return Utils.response(res, result);
+        } catch (error) {
+            return Utils.response(res, null);
+        }
+    },
+
     async addOrUpdate(req, res) {
         try {
             const body = req.body;

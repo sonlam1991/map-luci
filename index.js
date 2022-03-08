@@ -9,9 +9,9 @@ const expressLayouts = require('express-ejs-layouts');
 var app = express()
 
 const config = require('./config');
-console.log(config.mongoURI);
+console.log(config.MONGO_URI);
 // Connect to MongoDB
-mongoose.connect(config.mongoURI, {
+mongoose.connect(config.MONGO_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true,

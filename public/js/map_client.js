@@ -341,7 +341,14 @@ function generatePointOnMap(dataMaps) {
                                 </p> 
                                 <p style="margin: 0;">
                                     Tên Đèn Chiếu Sáng: <b> ${data.name}</b>
-                                </p>`;
+                                </p>
+                                <p style="margin: 0;">
+                                    Status: <b> ${data.status}</b>
+                                </p>
+                                <button class="btn-primary" onclick="controlTrafficLight('${data.id}', 'on')"style="margin: 0;">
+                                    ON/OFF
+                                </button>
+                                `;
                 break;
             case LAYER.ELECTRICAL_CABINET:
                 name = "TỦ ĐIỆN";
@@ -397,6 +404,14 @@ function generatePointOnMap(dataMaps) {
     }).addTo(map);
 }
 
+async function controlTrafficLight(deviceId, value) {
+    const data = {
+        deviceId,
+        value,
+    };
+    console.log('control =>', data);
+    const result = await requestPromisePOST('/map_control', data);
+}
 
 async function saveData(layer) {
     var data = {

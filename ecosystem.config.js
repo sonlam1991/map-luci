@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   apps : [{
-    name: 'gofa-map-tool',
+    name: 'luci-map',
     script: 'index.js',
 
     instances: 2,
