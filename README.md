@@ -35,3 +35,6 @@ def calculate_initial_compass_bearing(pointA, pointB):
     compass_bearing = (initial_bearing + 360) % 360
 
     return compass_bearing
+
+
+    rtsp://admin:lumivn274@daotaokt.cameraddns.net:557/cam/realmonitor?channel=1&subtype=1

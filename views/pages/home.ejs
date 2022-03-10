@@ -1,104 +1,107 @@
-<div class="row main-layer" >
+<div class="row main-layer">
     <div class="col-12 col-sm-9 col-md-9">
         <div id="map_top_display"></div>
     </div>
     <div class="col-12 col-sm-3 col-md-3">
-     <div class="row common-form">
-        <input type="hidden" class="form-control" id="_id">
-        <div class="form-group">
-            <label for="layer_select">Select Layer:</label>
-            <select class="form-control" id="layer_select">
-                <option selected value="layer_traffic_light">Đèn Chiếu Sáng</option>
-                <option value="layer_tree">Cây</option>
-                <option value="layer_electrical_cabinet">Tủ Điện</option>
-                <option value="layer_camera">Camera</option>
-            </select>
+        <div class="row common-form">
+            <input type="hidden" class="form-control" id="_id">
+            <div class="form-group">
+                <label for="layer_select">Select Layer:</label>
+                <select class="form-control" id="layer_select">
+                    <option selected value="layer_traffic_light">Đèn Chiếu Sáng</option>
+                    <option value="layer_tree">Cây</option>
+                    <option value="layer_electrical_cabinet">Tủ Điện</option>
+                    <option value="layer_camera">Camera</option>
+                </select>
+            </div>
         </div>
-     </div>
-     <div id="layer_traffic_light" class="row common-form">
-        <div class="form-group">
-            <label for="layer_traffic_light_lon">Kinh Độ:</label>
-            <input type="text" class="form-control lon" id="layer_traffic_light_lon">
-        </div>
-        <div class="form-group">
-            <label for="layer_traffic_light_lat">Vĩ Độ:</label>
-            <input type="text" class="form-control lat" id="layer_traffic_light_lat">
-        </div>
-        <b id="check_1_zigbee-00:0B:57:FF:FE:69:DE:08-1">hello</b>
-        <div class="form-group">
-            <label for="layer_traffic_light_id">ID Đèn Chiếu Sáng:</label>
-            <input type="text" class="form-control" id="layer_traffic_light_id">
-        </div>
-        <div class="form-group">
-            <label for="layer_traffic_light_name">Tên Đèn Chiếu Sáng:</label>
-            <input type="text" class="form-control" id="layer_traffic_light_name">
-        </div>
-        <button class="btn btn-primary" onclick="saveData('layer_traffic_light')">Lưu</button>
-        <button id="btn_layer_traffic_light_delete" class="btn btn-danger ml-2" onclick="deleteData('layer_traffic_light')">Xóa</button>
+        <div id="layer_traffic_light" class="row common-form">
+            <div class="form-group">
+                <label for="layer_traffic_light_lon">Kinh Độ:</label>
+                <input type="text" class="form-control lon" id="layer_traffic_light_lon">
+            </div>
+            <div class="form-group">
+                <label for="layer_traffic_light_lat">Vĩ Độ:</label>
+                <input type="text" class="form-control lat" id="layer_traffic_light_lat">
+            </div>
+            <div class="form-group">
+                <label for="layer_traffic_light_id">ID Đèn Chiếu Sáng:</label>
+                <input type="text" class="form-control" id="layer_traffic_light_id">
+            </div>
+            <div class="form-group">
+                <label for="layer_traffic_light_name">Tên Đèn Chiếu Sáng:</label>
+                <input type="text" class="form-control" id="layer_traffic_light_name">
+            </div>
+            <button class="btn btn-primary" onclick="saveData('layer_traffic_light')">Lưu</button>
+            <button id="btn_layer_traffic_light_delete" class="btn btn-danger ml-2"
+                onclick="deleteData('layer_traffic_light')">Xóa</button>
 
-     </div>
-     <div id="layer_tree" class="row common-form">
-        <div class="form-group">
-            <label for="layer_tree_lon">Kinh Độ:</label>
-            <input type="text" class="form-control" id="layer_tree_lon">
         </div>
-        <div class="form-group">
-            <label for="layer_tree_lat">Vĩ Độ:</label>
-            <input type="text" class="form-control" id="layer_tree_lat">
-        </div>
-        <div class="form-group">
-            <label for="layer_tree_name">Tên Cây:</label>
-            <input type="text" class="form-control" id="layer_tree_name">
-        </div>
-        <button class="btn btn-primary" onclick="saveData('layer_tree')">Lưu</button>
-        <button id="btn_layer_tree_delete" class="btn btn-danger ml-2" onclick="deleteData('layer_tree')">Xóa</button>
-     </div>
-
-     <div id="layer_camera" class="row common-form">
-        <div class="form-group">
-            <label for="layer_camera_lon">Kinh Độ:</label>
-            <input type="text" class="form-control" id="layer_camera_lon">
-        </div>
-        <div class="form-group">
-            <label for="layer_camera_lat">Vĩ Độ:</label>
-            <input type="text" class="form-control" id="layer_camera_lat">
-        </div>
-        <div class="form-group">
-            <label for="layer_camera_address">Địa Chỉ Lắp Đặt:</label>
-            <input type="text" class="form-control" id="layer_camera_address">
-        </div>
-        <div class="form-group">
-            <label for="layer_camera_name">Tên Camera:</label>
-            <input type="text" class="form-control" id="layer_camera_name">
-        </div>
-        <div class="form-group">
-            <label for="layer_camera_link_stream">Link Stream Camera:</label>
-            <input type="text" class="form-control" id="layer_camera_link_stream">
+        <div id="layer_tree" class="row common-form">
+            <div class="form-group">
+                <label for="layer_tree_lon">Kinh Độ:</label>
+                <input type="text" class="form-control" id="layer_tree_lon">
+            </div>
+            <div class="form-group">
+                <label for="layer_tree_lat">Vĩ Độ:</label>
+                <input type="text" class="form-control" id="layer_tree_lat">
+            </div>
+            <div class="form-group">
+                <label for="layer_tree_name">Tên Cây:</label>
+                <input type="text" class="form-control" id="layer_tree_name">
+            </div>
+            <button class="btn btn-primary" onclick="saveData('layer_tree')">Lưu</button>
+            <button id="btn_layer_tree_delete" class="btn btn-danger ml-2"
+                onclick="deleteData('layer_tree')">Xóa</button>
         </div>
 
-        <button class="btn btn-primary" onclick="saveData('layer_camera')">Lưu</button>
-        <button id="btn_layer_camera_delete" class="btn btn-danger ml-2" onclick="deleteData('layer_camera')">Xóa</button>
-     </div>
+        <div id="layer_camera" class="row common-form">
+            <div class="form-group">
+                <label for="layer_camera_lon">Kinh Độ:</label>
+                <input type="text" class="form-control" id="layer_camera_lon">
+            </div>
+            <div class="form-group">
+                <label for="layer_camera_lat">Vĩ Độ:</label>
+                <input type="text" class="form-control" id="layer_camera_lat">
+            </div>
+            <div class="form-group">
+                <label for="layer_camera_address">Địa Chỉ Lắp Đặt:</label>
+                <input type="text" class="form-control" id="layer_camera_address">
+            </div>
+            <div class="form-group">
+                <label for="layer_camera_name">Tên Camera:</label>
+                <input type="text" class="form-control" id="layer_camera_name">
+            </div>
+            <div class="form-group">
+                <label for="layer_camera_link_stream">Link Stream Camera:</label>
+                <input type="text" class="form-control" id="layer_camera_link_stream">
+            </div>
 
-     <div id="layer_electrical_cabinet" class="row common-form">
-        <div class="form-group">
-            <label for="layer_electrical_cabinet_lon">Kinh Độ:</label>
-            <input type="text" class="form-control" id="layer_electrical_cabinet_lon">
-        </div>
-        <div class="form-group">
-            <label for="layer_electrical_cabinet_lat">Vĩ Độ:</label>
-            <input type="text" class="form-control" id="layer_electrical_cabinet_lat">
-        </div>
-        <div class="form-group">
-            <label for="layer_electrical_cabinet_name">Tên Tủ Điện:</label>
-            <input type="text" class="form-control" id="layer_electrical_cabinet_name">
+            <button class="btn btn-primary" onclick="saveData('layer_camera')">Lưu</button>
+            <button id="btn_layer_camera_delete" class="btn btn-danger ml-2"
+                onclick="deleteData('layer_camera')">Xóa</button>
         </div>
 
-        <div class="form-group">
-            <label for="electrical_address">Địa Chỉ Lắp:</label>
-            <input type="text" class="form-control" id="layer_electrical_cabinet_address">
+        <div id="layer_electrical_cabinet" class="row common-form">
+            <div class="form-group">
+                <label for="layer_electrical_cabinet_lon">Kinh Độ:</label>
+                <input type="text" class="form-control" id="layer_electrical_cabinet_lon">
+            </div>
+            <div class="form-group">
+                <label for="layer_electrical_cabinet_lat">Vĩ Độ:</label>
+                <input type="text" class="form-control" id="layer_electrical_cabinet_lat">
+            </div>
+            <div class="form-group">
+                <label for="layer_electrical_cabinet_name">Tên Tủ Điện:</label>
+                <input type="text" class="form-control" id="layer_electrical_cabinet_name">
+            </div>
+
+            <div class="form-group">
+                <label for="electrical_address">Địa Chỉ Lắp:</label>
+                <input type="text" class="form-control" id="layer_electrical_cabinet_address">
+            </div>
+            <button class="btn btn-primary" onclick="saveData('layer_electrical_cabinet')">Lưu</button>
+            <button id="btn_layer_electrical_cabinet_delete" class="btn btn-danger ml-2"
+                onclick="deleteData('layer_electrical_cabinet')">Xóa</button>
         </div>
-        <button class="btn btn-primary" onclick="saveData('layer_electrical_cabinet')">Lưu</button>
-        <button id="btn_layer_electrical_cabinet_delete" class="btn btn-danger ml-2" onclick="deleteData('layer_electrical_cabinet')">Xóa</button>
-     </div>
-</div>
+    </div>
