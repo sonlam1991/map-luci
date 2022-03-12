@@ -19,6 +19,7 @@ var layerGeoJson = null;
 var dataMaps = [];
 var dataAddress = {};
 var currentZoomLevel = 15;
+var levelDisplay = 15;
 
 /////////// ICON //////////////
 var cameraIcon = L.icon({ iconUrl: 'image/camera.png', iconSize: [50, 30], iconAnchor: [16, 37], popupAnchor: [0, -28] });
@@ -37,33 +38,35 @@ function convertIdDevice(deviceId) {
 }
 async function updateStatusDevice() {
     countGetStatus++;
-    const data = {
-        deviceIds: [currentDeviceId]
-    };
-    const result = await requestPromisePOST('/map_get_status', data);
-    if(result.status == 200) {
-        const resultData = result.data;
-        if(resultData) {
-            const deviceId = resultData.deviceId;
-            const deviceIdConvert = convertIdDevice(deviceId);
-            const status = resultData.status;
+    if (currentDeviceId) {
+        const data = {
+            deviceIds: [currentDeviceId]
+        };
+        const result = await requestPromisePOST('/map_get_status', data);
+        if (result.status == 200) {
+            const resultData = result.data;
+            if (resultData) {
+                const deviceId = resultData.deviceId;
+                const deviceIdConvert = convertIdDevice(deviceId);
+                const status = resultData.status;
 
-            if(status) {
-                $("#status_"+ deviceIdConvert).html(`<b id="status_${deviceIdConvert}" class="text-success">ON</b>`);            
-                $("#btn_"+ deviceIdConvert).html(`<button class="btn-secondany" 
+                if (status) {
+                    $("#status_" + deviceIdConvert).html(`Trạng Thái Hiện Tại: <img class="icon-light"  src="/image/light-on.png" alt="ligth on">`);
+                    $("#btn_" + deviceIdConvert).html(`<button class="btn-secondany" 
                                             onclick="controlTrafficLight('${deviceId}', false)" 
                                             style="margin: 0;"> TURN OFF
                                         </button>`);
-            } else {
-                $("#status_"+ deviceIdConvert).html(`<b id="status_${deviceIdConvert}" class="text-second">OFF</b>`);            
-                $("#btn_"+ deviceIdConvert).html(`<button class="btn-success" 
+                } else {
+                    $("#status_" + deviceIdConvert).html(`Trạng Thái Hiện Tại: <img class="icon-light"  src="/image/light-off.png" alt="ligth on">`);
+                    $("#btn_" + deviceIdConvert).html(`<button class="btn-success" 
                                             onclick="controlTrafficLight('${deviceId}', true)" 
                                             style="margin: 0;"> TURN ON
                                         </button>`);
-                console.log('status offf');
+                    console.log('status offf');
+                }
             }
+            console.log({ resultData });
         }
-        console.log({resultData});
     }
 }
 
@@ -89,6 +92,7 @@ function resetForm(layer) {
         case LAYER.ELECTRICAL_CABINET:
             $('#' + layer + '_name').val('');
             $('#' + layer + '_address').val('');
+            $('#' + layer + '_link_document').val('');
             break;
         case LAYER.TREE:
             $('#' + layer + '_name').val('');
@@ -103,12 +107,12 @@ function getFeatureIcon(latlng, layer, data) {
         case LAYER.CAMERA:
             return L.marker(latlng, { icon: cameraIcon });
         case LAYER.TRAFFIC_LIGHT:
-            if(data.status) {
+            if (data.status) {
                 return L.marker(latlng, { icon: trafficLightOnIcon });
             } else {
                 return L.marker(latlng, { icon: trafficLightOffIcon });
             }
-            
+
         case LAYER.ELECTRICAL_CABINET:
             return L.marker(latlng, { icon: electricalCabinetIcon });
         case LAYER.TREE:
@@ -133,6 +137,7 @@ function addDataUpdate(layer, data) {
         case LAYER.ELECTRICAL_CABINET:
             $('#' + layer + '_name').val(data.name);
             $('#' + layer + '_address').val(data.address);
+            $('#' + layer + '_link_document').val(data.link_document);
             break;
         case LAYER.TREE:
             $('#' + layer + '_name').val(data.name);
@@ -160,6 +165,7 @@ function getSaveData(layer) {
             return {
                 name: $('#' + layer + '_name').val(),
                 address: $('#' + layer + '_address').val(),
+                link_document: $('#' + layer + '_link_document').val(),
             };
         case LAYER.TREE:
             return {
@@ -201,7 +207,8 @@ $(document).ready(function () {
     map.on('zoomend', function (el) {
         console.log("target zoom =>", el.target._zoom);
         currentZoomLevel = el.target._zoom;
-        currentZoomLevel = 17;
+        // currentZoomLevel = 17;
+        $('#current_level').text(currentZoomLevel);
         getData();
     });
 
@@ -212,6 +219,13 @@ $(document).ready(function () {
         showLayer(currentLayer);
         getData();
     });
+
+    // SELECT LEVEL DISPLAY
+    $('#level_display_select').change(function () {
+        levelDisplay = $(this).val();
+        getData();
+    });
+
 
     ////////// 
     getData();
@@ -234,7 +248,7 @@ $(document).ready(function () {
     });
 
     setInterval(function () {
-        if((currentLayer == LAYER.TRAFFIC_LIGHT) && (countGetStatus <= 3)) {
+        if ((currentLayer == LAYER.TRAFFIC_LIGHT) && (countGetStatus <= 3)) {
             updateStatusDevice();
         }
     }, 1000);
@@ -302,6 +316,7 @@ async function addNewPoint(lon, lat) {
             case LAYER.ELECTRICAL_CABINET:
                 $('#' + currentLayer + '_name').val(dataTemp.name);
                 $('#' + currentLayer + '_address').val(dataTemp.address);
+                $('#' + currentLayer + '_link_document').val(dataTemp.link_document);
                 break;
             case LAYER.TREE:
                 $('#' + currentLayer + '_name').val(dataTemp.name);
@@ -355,8 +370,7 @@ async function getData() {
             break;
         }
     }
-    console.log({ dataMaps });
-    if (currentZoomLevel >= 15) {
+    if (currentZoomLevel >= levelDisplay) {
         if (dataMaps && dataMaps.length > 0) {
             generatePointOnMap(dataMaps);
         }
@@ -395,38 +409,42 @@ function generatePointOnMap(dataMaps) {
                                     Tên Đèn Chiếu Sáng: <b> ${data.name}</b>
                                 </p>
                                 `;
-                                if(data.status) {
-                                    popupContent += `
-                                        <p style="margin: 0;">
-                                            Trạng Thái Hiện Tại: <b id="status_${convertIdDevice(data.id)}" class="text-success">ON</b>
+                const deviceId = convertIdDevice(data.id);
+                if (data.status) {
+                    popupContent += `
+                                        <p  id="status_${deviceId}" style="margin: 0;">
+                                            Trạng Thái Hiện Tại: <img class="icon-light" src="/image/light-on.png" alt="ligth on">
                                         </p>
-                                        <div id="btn_${convertIdDevice(data.id)}">
+                                        <div id="btn_${deviceId}">
                                             <button  class="btn-secondary" 
                                                 onclick="controlTrafficLight('${data.id}', false)" style="margin: 0;">
                                                 TURN OFF
                                             </button>
                                         </div>`;
-                                    
-                                } else {
-                                    popupContent += `
-                                        <p style="margin: 0;">
-                                            Trạng Thái Hiện Tại: <b id="status_${convertIdDevice(data.id)}" class="text-second">OFF</b>
+
+                } else {
+                    popupContent += `
+                                        <p  id="status_${deviceId}" style="margin: 0;">
+                                            Trạng Thái Hiện Tại: <img class="icon-light" id="status_${deviceId}" src="/image/light-off.png" alt="ligth off">
                                         </p>
-                                        <div id="btn_${convertIdDevice(data.id)}">
+                                        <div id="btn_${deviceId}">
                                             <button class="btn-success" 
                                                 onclick="controlTrafficLight('${data.id}', true)" style="margin: 0;">
                                                 TURN ON
                                             </button>
                                         </div>`;
-                                }
+                }
                 break;
             case LAYER.ELECTRICAL_CABINET:
                 name = "TỦ ĐIỆN";
-                popupContent =  `<p style="margin: 0;">
+                popupContent = `<p style="margin: 0;">
                                     Tên Tủ Điện:<b> ${data.name}</b>
                                 </p> 
                                 <p style="margin: 0;">
                                     Địa Chỉ Lắp: <b> ${data.address}</b>
+                                </p>
+                                <p style="margin: 0;">
+                                    Link Tài Liệu: <a target="_blank" href="${data.link_document}"> ${data.link_document}</a>
                                 </p>`;
                 break;
             case LAYER.TREE:

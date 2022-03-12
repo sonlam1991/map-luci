@@ -6,6 +6,10 @@
   display: none;
 }
 
+.icon-light {
+  height: 70px;
+}
+
 .main-layer {
   margin-top: 30px;
 }

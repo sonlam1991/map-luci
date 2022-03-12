@@ -75,20 +75,23 @@ module.exports = {
         const body = req.body ? req.body : {};
         console.log({ body });
         try {
-            const result = await Utils.getStatusDevice(body.deviceIds);
-            const resultData = result.data[0];
-            if (resultData) {
-                const deviceId = resultData.devid;
-                const status = resultData.states.OnOff.on;
-                console.log("device id =>", deviceId);
-                console.log("status =>", status);
-                const query = {
-                    type: 'layer_traffic_light',
-                    "data.id": deviceId,
-                };
-                const update = await MapModel.updateOne(query, { "data.status": status });
-                return Utils.response(res, { deviceId, status });
+            if (body.deviceIds) {
+                const result = await Utils.getStatusDevice(body.deviceIds);
+                const resultData = result.data[0];
+                if (resultData) {
+                    const deviceId = resultData.devid;
+                    const status = resultData.states.OnOff.on;
+                    console.log("device id =>", deviceId);
+                    console.log("status =>", status);
+                    const query = {
+                        type: 'layer_traffic_light',
+                        "data.id": deviceId,
+                    };
+                    const update = await MapModel.updateOne(query, { "data.status": status });
+                    return Utils.response(res, { deviceId, status });
+                }
             }
+
             return Utils.response(res, null);
         } catch (error) {
             console.log(error);
