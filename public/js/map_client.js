@@ -395,8 +395,8 @@ function generatePointOnMap(dataMaps) {
                                     Tên Camera: <b> ${data.name}</b>
                                 </p>
                                 <iframe id='fp_embed_player' 
-                                    src='https://demo.flashphoner.com:8888/embed_player?urlServer=wss://demo.flashphoner.com:8443&streamName=${data.link_stream}&mediaProviders=WebRTC' 
-                                    marginwidth='0' marginheight='0' autoplay frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen'>
+                                    src='https://demo.flashphoner.com:8888/embed_player?urlServer=wss://demo.flashphoner.com:8443&streamName=${data.link_stream}&mediaProviders=WebRTC,MSE,WSPlayer' 
+                                    marginwidth='0' marginheight='0' frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen'>
                                 </iframe>
                                 `
                 break;
