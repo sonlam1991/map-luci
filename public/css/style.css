@@ -20,7 +20,8 @@
 }
 
 #map_top_display {
-  height: 700px;
+  /* height: 700px; */
+  height: calc(100vh - 50px);
 }
 
 
