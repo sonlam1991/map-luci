@@ -364,6 +364,7 @@ async function editData(lat, lon) {
     if (pinLayer != undefined) {
         map.removeLayer(pinLayer);
     };
+
     if (dataMap) {
         $('#btn_' + currentLayer + '_delete').show();
         $('#_id').val(dataMap._id);
@@ -375,6 +376,12 @@ async function editData(lat, lon) {
         $('#btn_' + currentLayer + '_delete').hide();
         isUpdate = false;
     }
+    setTimeout(function () {
+        console.log(document.getElementById('canvas'));
+        player = new JSMpeg.Player('ws://localhost:9999', {
+            canvas: document.getElementById('canvas'), // Canvas should be a canvas DOM element
+        })
+    }, 2000);
 }
 
 async function getData() {
@@ -422,10 +429,8 @@ function generatePointOnMap(dataMaps) {
                                 <p style="margin: 0;">
                                     Tên Camera: <b> ${data.name}</b>
                                 </p>
-                                <iframe id='fp_embed_player' 
-                                    src='https://demo.flashphoner.com:8888/embed_player?urlServer=wss://demo.flashphoner.com:8443&streamName=${data.link_stream}&mediaProviders=WebRTC,MSE,WSPlayer' 
-                                    marginwidth='0' marginheight='0' frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen'>
-                                </iframe>
+                                <canvas style="width: 300px;" id="canvas"></canvas>
+                                <button onClick="setFullScreen()">FullScreen</button>
                                 `
                 break;
             case LAYER.TRAFFIC_LIGHT:
@@ -552,6 +557,14 @@ async function saveData(layer) {
         // alert(result.message);
     }
 
+}
+
+function setFullScreen() {
+    
+    var can = document.getElementById("canvas");
+    can.style.width = window.innerWidth + "px";
+    can.style.height = window.innerHeight + "px";
+    can.style.absolute = "0px 0px";
 }
 
 async function deleteData() {

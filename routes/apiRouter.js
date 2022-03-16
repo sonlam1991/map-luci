@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MapController = require('../controller/MapController');
 const UploadController = require('../controller/UploadController');
+const StreamController = require('../controller/StreamController');
 
 
 ////////////// Upload //////////////
@@ -36,7 +37,9 @@ router.post('/map_delete', MapController.delete);
 router.post('/map_control', MapController.mapControl);
 router.post('/map_get_status', MapController.mapGetStatusDevice);
 
-
 router.post('/fileupload', upload.single('file'), UploadController.upload);
+
+router.post('/start_stream', StreamController.startStream);
+router.post('/stop_stream', StreamController.stopStream);
 
 module.exports = router;

@@ -16,6 +16,8 @@ module.exports.response = (res, data, status = 200, message = 'Success') => {
 
 
 
+
+
 module.exports.getStatusDevice = async (devids) => {
     const body = {
         homeid: config.SMART_HOME_HOME_ID,
