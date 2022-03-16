@@ -18,8 +18,8 @@ var pinLayer = null;
 var layerGeoJson = null;
 var dataMaps = [];
 var dataAddress = {};
-var currentZoomLevel = 15;
-var levelDisplay = 15;
+var currentZoomLevel = 17;
+var levelDisplay = 17;
 
 /////////// ICON //////////////
 var cameraIcon = L.icon({ iconUrl: 'image/camera.png', iconSize: [50, 30], iconAnchor: [16, 37], popupAnchor: [0, -28] });
@@ -147,7 +147,7 @@ function addDataUpdate(layer, data) {
     }
 }
 
-function getSaveData(layer) {
+async function getSaveData(layer) {
     switch (layer) {
         case LAYER.CAMERA:
             return {
@@ -162,10 +162,12 @@ function getSaveData(layer) {
                 status: false,
             };
         case LAYER.ELECTRICAL_CABINET:
+            const link = await uploadFile();
+            console.log(link);
             return {
                 name: $('#' + layer + '_name').val(),
                 address: $('#' + layer + '_address').val(),
-                link_document: $('#' + layer + '_link_document').val(),
+                link_document: link ? link : $('#' + layer + '_link_document').val(),
             };
         case LAYER.TREE:
             return {
@@ -176,6 +178,32 @@ function getSaveData(layer) {
     }
 }
 
+function uploadFile() {
+    return new Promise(async (resolve, reject) => {
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        fd.append('file', files);
+        console.log(fd);
+        $.ajax({
+            url: 'api/v1/fileupload',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                console.log({ response });
+                if (response && response.data) {
+                    resolve(response.data.path);
+                }
+                else {
+                    alert('file not uploaded');
+                    resolve(false);
+                }
+            },
+        });
+    });
+}
+
 /////////////// END function //////////////////
 
 $(document).ready(function () {
@@ -184,8 +212,8 @@ $(document).ready(function () {
     // init map
     map = L.map('map_top_display', {
         attributionControl: false, // để ko hiện watermark nữa, nếu bị liên hệ đòi thì nhớ open nha
-        center: [20.999526, 105.796784], // vị trí map mặc định hiện tại
-        zoom: 15, // level zoom
+        center: [10.66066, 106.45002], // vị trí map mặc định hiện tại
+        zoom: 17, // level zoom
     });
 
     // add tile để map có thể hoạt động, xài free từ OSM
@@ -438,14 +466,13 @@ function generatePointOnMap(dataMaps) {
             case LAYER.ELECTRICAL_CABINET:
                 name = "TỦ ĐIỆN";
                 popupContent = `<p style="margin: 0;">
-                                    Tên Tủ Điện:<b> ${data.name}</b>
+                                    Tên Tủ Điện:<b> ${(data && data.name) ? data.name : ''}</b>
                                 </p> 
                                 <p style="margin: 0;">
-                                    Địa Chỉ Lắp: <b> ${data.address}</b>
+                                    Địa Chỉ Lắp: <b> ${(data && data.address) ? data.address : ''}</b>
                                 </p>
-                                <p style="margin: 0;">
-                                    Link Tài Liệu: <a target="_blank" href="${data.link_document}"> ${data.link_document}</a>
-                                </p>`;
+                                <a href="${(data && data.link_document) ? data.link_document : ''}" download target="_blank">Download Tài Liệu</a>
+                                `;
                 break;
             case LAYER.TREE:
                 name = "Cây";
@@ -508,7 +535,7 @@ async function saveData(layer) {
         lon: getValueByIdSelector(currentLayer + '_lon'),
         lat: getValueByIdSelector(currentLayer + '_lat'),
         type: currentLayer,
-        data: getSaveData(currentLayer),
+        data: await getSaveData(currentLayer),
     };
     console.log("data insert => ", data);
 
